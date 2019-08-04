@@ -13,6 +13,13 @@ echo "Configurando aliases"
 sudo snap alias microk8s.kubectl kubectl
 sudo snap alias microk8s.istioctl istioctl
 
+
+echo "Criando namespace Bookinfo"
+kubectl create namespace bookinfo
+
+echo "Habilitando o istio-injection no namespace"
+kubectl label namespace bookinfo istio-injection=enabled
+
 echo "Implantando aplicação"
 kubectl apply -f 
 

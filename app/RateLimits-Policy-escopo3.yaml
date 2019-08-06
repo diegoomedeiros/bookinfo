@@ -9,23 +9,19 @@ spec:
     maxAmount: 5
     validDuration: 1s
     overrides:
- # PRODUCTPAGE
-    - dimensions:
+    - dimensions: # PRODUCTPAGE
         destination: productpage
       maxAmount: 5
       validDuration: 1s
- # REVIEWS
-    - dimensions:
+    - dimensions: # REVIEWS
         destination: reviews
       maxAmount: 1
       validDuration: 1s
-    # RATINGS
-    - dimensions:
+    - dimensions: # RATINGS
         destination: details
       maxAmount: 1
       validDuration: 1s
-    # DETAILS
-    - dimensions:
+    - dimensions:  # DETAILS
         destination: details
       maxAmount: 2
       validDuration: 1s	 
@@ -64,7 +60,7 @@ spec:
   services:
   - name: productpage
     namespace: default
-      - service: '*'  # Uncomment this to bind *all* services to request-count
+    - service: '*'  # Uncomment this to bind *all* services to request-count
 ---
 apiVersion: config.istio.io/v1alpha2
 kind: rule

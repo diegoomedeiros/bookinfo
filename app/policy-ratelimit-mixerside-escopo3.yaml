@@ -19,6 +19,4 @@ spec:
   - name: request-count
     namespace: istio-system
   services:
-  - name: productpage
-    namespace: default
-    - service: '*'
+  - service: '*'

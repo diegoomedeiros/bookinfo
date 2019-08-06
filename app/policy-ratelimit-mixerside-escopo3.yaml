@@ -20,3 +20,5 @@ spec:
     namespace: istio-system
   services:
   - service: '*'
+    namespace: default
+    

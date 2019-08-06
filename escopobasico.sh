@@ -5,10 +5,9 @@ echo ""
 echo ""
 echo -e "${LIGHT_BLUE}Verificando instalação do Microk8s${NC}"
 echo ""
-PROGRAMA=$(type microk8s 2>/dev/null | grep microk8s | wc -l)
+PROGRAMA=$(type microk8s.status 2>/dev/null | wc -l)
 if [ $PROGRAMA -eq 0 ]
-	then
-		
+	then		
 		echo -e "${LIGHT_BLUE}Instalando microk8s${NC}"
 		snap install microk8s --classic --channel=1.14/stable
 	else
@@ -34,7 +33,7 @@ echo -e "${LIGHT_BLUE}Adicionando Regras de Firewall${NC}" ##Debian/Ubuntu
 echo ""
 sudo ufw default allow routed
 sudo iptables -P FORWARD ACCEPT
-sudo ufw allow in on cbr0 && sudo ufw allow out on cbr0
+r
 sleep 2
 #echo "Habilitando Dashboard, DNS e Metrics-Server" 
 #sudo microk8s.enable dns dashboard metrics-server  
@@ -42,11 +41,12 @@ sleep 2
 #sleep 5
 echo ""
 echo ""
-echo -e "${LIGHT_BLUE}Habilitando Istio${NC}"
+#echo -e "${LIGHT_BLUE}Habilitando Istio${NC}"
 echo ""
 microk8s.enable istio 
 sleep 10
-
+sleep 10
+bash <(curl -L https://git.io/getLatestKialiOperator)
 #echo "${LIGHT_BLUE}Criando namespace Bookinfo${NC}"
 #kubectl create namespace bookinfo-app
 echo ""
@@ -58,10 +58,12 @@ sleep 5
 echo ""
 echo ""
 echo -e "${LIGHT_BLUE}Implantando aplicação${NC}"
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.2/samples/bookinfo/platform/kube/bookinfo.yaml
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.2/samples/bookinfo/networking/bookinfo-gateway.yaml
+#kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.2/samples/bookinfo/platform/kube/bookinfo.yaml
+#kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.2/samples/bookinfo/networking/bookinfo-gateway.yaml
 #kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.2/samples/bookinfo/networking/destination-rule-all-mtls.yaml
-
+kubectl apply -f ~/bookinfo/app/
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/destination-rule-all.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.2/samples/bookinfo/networking/bookinfo-gateway.yaml
 
 
 

@@ -25,6 +25,7 @@ echo -e "${LIGHT_BLUE}Adicionando Regras de Firewall${NC}" ##Debian/Ubuntu
 echo ""
 sudo ufw default allow routed
 sudo iptables -P FORWARD ACCEPT
+sudo ufw allow in on cbr0 && sudo ufw allow out on cbr0 # Dns e Dashboar com CrashLopping
 sleep 2
 #echo "Habilitando Dashboard, DNS e Metrics-Server" 
 #sudo microk8s.enable dns dashboard metrics-server  
@@ -32,8 +33,7 @@ sleep 2
 #sleep 5
 echo ""
 echo ""
-#echo -e "${LIGHT_BLUE}Habilitando Istio${NC}"
-
+echo -e "${LIGHT_BLUE}Habilitando Istio${NC}"
 echo ""
 microk8s.enable istio 
 sleep 300  ## Tempo medio de inicializacao do Pods do Istio 
@@ -48,7 +48,7 @@ kubectl label namespace default istio-injection=enabled
 sleep 5
 echo ""
 echo ""
-echo -e "${LIGHT_BLUE}Implantando aplicação${NC}"
+echo -e "${LIGHT_BLUE}Implantando Bookinfo App${NC}"
 kubectl apply -f https://raw.githubusercontent.com/diegoomedeiros/bookinfo/master/app/bookinfo.yaml
 kubectl apply -f https://raw.githubusercontent.com/diegoomedeiros/bookinfo/master/app/bookinfo-gateway.yaml
 kubectl apply -f https://raw.githubusercontent.com/diegoomedeiros/bookinfo/master/app/destination-rule-all-mtls.yaml

@@ -9,19 +9,19 @@ spec:
     maxAmount: 5
     validDuration: 1s
     overrides:
-    - dimensions: # PRODUCTPAGE
+    - dimensions: 
         destination: productpage
       maxAmount: 5
       validDuration: 1s
-    - dimensions: # REVIEWS
+    - dimensions: 
         destination: reviews
       maxAmount: 1
       validDuration: 1s
-    - dimensions: # RATINGS
+    - dimensions: 
         destination: details
       maxAmount: 1
       validDuration: 1s
-    - dimensions:  # DETAILS
+    - dimensions:  
         destination: details
       maxAmount: 2
       validDuration: 1s	 

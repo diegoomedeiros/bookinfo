@@ -1,25 +1,30 @@
-# Desafio Bookinfo
+# Desafio Bookinfo - Easy Install
 
-Como sair do 0 a um node local em alguns minutos.
+Como sair do 0 a um node local em alguns minutos - ou não.
+-Recursos: 
+** Snap - (Recomenda-se utilizar SO. Ubuntu com versao de Kernel 4.4 ou superior - vários problemas com outras distros e versões do kernel)
 
 
+## Istio - Service Mesh
 
-
-### Grafana - 
-- Leve 
-- Comunidade ativda
-- Integração
-```kubectl port-forward svc/grafana 3000:3000 -n istio-system &
-[http://localhost:3000]
-### Service Graph
-kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=servicegraph -o jsonpath='{.items[0].metadata.name}') 8088:8088 &
-http://localhost:8088/force/forcegraph.html
-### Kiali
-kubectl port-forward svc/zipkin 9411:9411 -n istio-system
+## Kiali - Visualizador de Service Mesh
+```kubectl port-forward svc/zipkin 9411:9411 -n istio-system &```
 http://localhost:9411/
 
+## Grafana
+Ferramenta de visualização e analise de dados/métricas por meio de gráficos (dashboards) dinâmicos (tempo real) que podem ser compartilhados.
+-Leve.
+-Integração com diversas bases de dado.
+Liberando porta no proxy:
+```kubectl port-forward svc/grafana 3000:3000 -n istio-system &```
+[http://localhost:3000]
 
-### MetalLB 
+## Prometheus
+
+
+## Helm 
+
+## MetalLB  (Opcional)
   Fornece IP (Layer2) para o Ingress do Istio em ambientes internos- faz o papel de um Load Balencer Externo.
   Intalação:
 kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml

@@ -8,25 +8,25 @@ spec:
   params:
     quotas:	  
     - name: requestcountquota.instance.istio-system
-        maxAmount: 5
-        validDuration: 1s
-        overrides:
-        - dimensions: 
-            destination: productpage
-        maxAmount: 5
-        validDuration: 1s
-        - dimensions: 
-            destination: reviews
-        maxAmount: 1
-        validDuration: 1s
-        - dimensions: 
-            destination: details
-        maxAmount: 1
-        validDuration: 1s
-        - dimensions:  
-            destination: details
-        maxAmount: 2
-        validDuration: 1s	 
+      maxAmount: 5
+      validDuration: 1s
+      overrides:
+      - dimensions: 
+          destination: productpage
+      maxAmount: 5
+      validDuration: 1s
+      - dimensions: 
+          destination: reviews
+      maxAmount: 1
+      validDuration: 1s
+      - dimensions: 
+          destination: details
+      maxAmount: 1
+      validDuration: 1s
+      - dimensions:  
+          destination: details
+      maxAmount: 2
+      validDuration: 1s	 
 ---
 apiVersion: config.istio.io/v1alpha2
 kind: instance

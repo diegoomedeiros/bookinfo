@@ -1,7 +1,7 @@
 apiVersion: config.istio.io/v1alpha2
-kind: memquota
+kind: handler
 metadata:
-  name: handler
+  name: quotahandler
   namespace: istio-system
 spec:
   quotas:	  
@@ -27,9 +27,9 @@ spec:
       validDuration: 1s	 
 ---
 apiVersion: config.istio.io/v1alpha2
-kind: quota
+kind: instance
 metadata:
-  name: requestcount
+  name: requestcountquota
   namespace: istio-system
 spec:
   dimensions:
@@ -44,6 +44,6 @@ metadata:
   namespace: istio-system
 spec:
   actions:
-  - handler: handler.memquota
+  - handler: quotahandler
     instances:
     - requestcount.quota

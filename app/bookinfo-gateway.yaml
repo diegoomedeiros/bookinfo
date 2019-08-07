@@ -39,3 +39,11 @@ spec:
         host: productpage
         port:
           number: 9080
+  - match:
+    - uri:
+        exact: /grafana
+    route:
+    - destination:
+        host: grafana
+        port:
+          number: 3000

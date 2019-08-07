@@ -6,6 +6,13 @@ Como sair do 0 a um node local em alguns minutos - ou não.
 **Snap - (Recomenda-se utilizar sistema operacional Ubuntu com versao de Kernel 4.4 ou superior - vários problemas com outras distros e versões do kernel)
 Só?! Easy_intall faz o resto!
 
+# Conjunto de aplicações a serem instalados no Cluster
+ * [Istio]
+ * [Kiali]
+ * [Grafana]
+ * [Prometheus]
+ 
+
 ## Istio - Service Mesh 
 
 Fornece uma vasta gama de recursos para gestão de microservicos distribuidos com diversas integrações. Tem como principal objetivo, reduzir a complexidade no processo de implantação para os times de desenvolvimento. Atua no gerenciamento de trafego, segurança, integração e visibilidade.  

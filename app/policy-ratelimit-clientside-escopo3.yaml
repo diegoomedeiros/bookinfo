@@ -4,27 +4,29 @@ metadata:
   name: quotahandler
   namespace: istio-system
 spec:
-  quotas:	  
-  - name: requestcountquota.instance.istio-system
-    maxAmount: 5
-    validDuration: 1s
-    overrides:
-    - dimensions: 
-        destination: productpage
-      maxAmount: 5
-      validDuration: 1s
-    - dimensions: 
-        destination: reviews
-      maxAmount: 1
-      validDuration: 1s
-    - dimensions: 
-        destination: details
-      maxAmount: 1
-      validDuration: 1s
-    - dimensions:  
-        destination: details
-      maxAmount: 2
-      validDuration: 1s	 
+  compiledAdapter: memquota
+  params:
+    quotas:	  
+    - name: requestcountquota.instance.istio-system
+        maxAmount: 5
+        validDuration: 1s
+        overrides:
+        - dimensions: 
+            destination: productpage
+        maxAmount: 5
+        validDuration: 1s
+        - dimensions: 
+            destination: reviews
+        maxAmount: 1
+        validDuration: 1s
+        - dimensions: 
+            destination: details
+        maxAmount: 1
+        validDuration: 1s
+        - dimensions:  
+            destination: details
+        maxAmount: 2
+        validDuration: 1s	 
 ---
 apiVersion: config.istio.io/v1alpha2
 kind: instance
@@ -32,10 +34,12 @@ metadata:
   name: requestcountquota
   namespace: istio-system
 spec:
-  dimensions:
-    source: request.headers["x-forwarded-for"] | "unknown"
-    destination: destination.labels["app"] | destination.service.name | "unknown"
-    destinationVersion: destination.labels["version"] | "unknown"
+  compiledTemplate: quota
+  params:
+    dimensions:
+        source: request.headers["x-forwarded-for"] | "unknown"
+        destination: destination.labels["app"] | destination.service.name | "unknown"
+        destinationVersion: destination.labels["version"] | "unknown"
 ---
 apiVersion: config.istio.io/v1alpha2
 kind: rule
@@ -46,4 +50,4 @@ spec:
   actions:
   - handler: quotahandler
     instances:
-    - requestcount.quota
+    - requestcountquota
